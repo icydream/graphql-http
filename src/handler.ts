@@ -206,7 +206,7 @@ export async function parseRequestParams<
   RequestContext = unknown,
 >(req: Request<RequestRaw, RequestContext>): Promise<Response | RequestParams> {
   const method = req.method;
-  if (['GET', 'POST', 'QUERY'].includes(method)) {
+  if (!['GET', 'POST', 'QUERY'].includes(method)) {
     return [
       null,
       {
