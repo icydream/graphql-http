@@ -206,7 +206,7 @@ export async function parseRequestParams<
   RequestContext = unknown,
 >(req: Request<RequestRaw, RequestContext>): Promise<Response | RequestParams> {
   const method = req.method;
-  if (method !== 'GET' && method !== 'POST') {
+  if (['GET', 'POST', 'QUERY'].includes(method)) {
     return [
       null,
       {
@@ -246,7 +246,7 @@ export async function parseRequestParams<
       }
       break;
     }
-    case method === 'POST' &&
+    case ['QUERY', 'POST'].includes(method) &&
       mediaType === 'application/json' &&
       charset === 'charset=utf-8': {
       if (!req.body) {
