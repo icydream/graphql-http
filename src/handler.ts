@@ -213,7 +213,7 @@ export async function parseRequestParams<
         status: 405,
         statusText: 'Method Not Allowed',
         headers: {
-          allow: 'GET, POST',
+          allow: 'GET, POST, QUERY'
         },
       },
     ];
